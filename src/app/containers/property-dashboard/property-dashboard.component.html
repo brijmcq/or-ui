@@ -1,0 +1,109 @@
+<div class="container">
+  <mat-card>
+    <form
+      [formGroup]="formGroup"
+      (ngSubmit)="onSubmit(formGroup)"
+      #formDirective="ngForm"
+      novalidate
+    >
+      <h1>Add new property</h1>
+      <mat-form-field>
+        <input formControlName="street" matInput placeholder="Street" />
+        <mat-error *ngIf="formGroup.controls.street.hasError('required')">
+          Street is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input formControlName="city" matInput placeholder="City" />
+        <mat-error *ngIf="formGroup.controls.city.hasError('required')">
+          City is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="state" matInput placeholder="State" />
+        <mat-error *ngIf="formGroup.controls.state.hasError('required')">
+          State is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="zip" matInput placeholder="Zip" />
+        <mat-error *ngIf="formGroup.controls.zip.hasError('required')">
+          Zip is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          formControlName="rent"
+          matInput
+          type="number"
+          placeholder="Rent"
+        />
+        <mat-error *ngIf="formGroup.controls.rent.hasError('required')">
+          Rent is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input formControlName="user" type="text" placeholder="Owner" matInput [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayOwner">
+          <mat-option *ngFor="let user of users$ | async | select: 'users'" [value]="user">
+            {{user.firstName }} {{user.lastName }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+<!--       
+      <mat-form-field>
+        <input formControlName="user" matInput placeholder="User" />
+        <mat-error *ngIf="formGroup.controls.user.hasError('required')">
+          User is required
+        </mat-error>
+      </mat-form-field> -->
+
+      <button class="add-btn" mat-raised-button color="primary">
+        <mat-icon>add</mat-icon>
+        Add
+      </button>
+    </form>
+  </mat-card>
+  <hr />
+  <mat-card>
+    <mat-form-field class="w-100">
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Filter"
+      />
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z4 w-100">
+      <!-- First Name Column -->
+      <ng-container matColumnDef="street">
+        <th mat-header-cell *matHeaderCellDef>Street</th>
+        <td mat-cell *matCellDef="let element">{{ element.street }}</td>
+      </ng-container>
+      <!-- Last Column -->
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef>City</th>
+        <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+      </ng-container>
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef>State</th>
+        <td mat-cell *matCellDef="let element">{{ element.state }}</td>
+      </ng-container>
+      <ng-container matColumnDef="zip">
+        <th mat-header-cell *matHeaderCellDef>Zip</th>
+        <td mat-cell *matCellDef="let element">{{ element.zip }}</td>
+      </ng-container>
+      <ng-container matColumnDef="rent">
+        <th mat-header-cell *matHeaderCellDef>Rent</th>
+        <td mat-cell *matCellDef="let element">{{ element.rent }}</td>
+      </ng-container>
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef>User</th>
+        <td mat-cell *matCellDef="let element">{{ element.owner.firstName }} {{ element.owner.lastName }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card>
+</div>

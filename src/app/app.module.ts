@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +15,8 @@ import {
   MatSidenavModule,
   MatListModule,
   MatTableModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatAutocompleteModule
 } from '@angular/material';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -25,6 +26,7 @@ import { SearchPageComponent } from './containers/search-page/search-page.compon
 import { UserDashboardComponent } from './containers/user-dashboard/user-dashboard.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { PropertyDashboardComponent } from './containers/property-dashboard/property-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     SearchComponent,
     FooterComponent,
     SearchPageComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    PropertyDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatTableModule,
     MatSnackBarModule,
+    MatAutocompleteModule,
     GraphQLModule,
     HttpClientModule
   ],

@@ -1,24 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { query } from '@angular/animations';
+import { User } from '../shared/user.model';
 
-type User = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  properties: Property[];
-};
 
-type Property = {
-  id: string;
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
-  rent: number;
-  owner: User;
-};
 
 type Response = {
   users: User[];
