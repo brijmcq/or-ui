@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,8 +14,8 @@ import {
   MatIconModule,
   MatSidenavModule,
   MatListModule,
-  MatTableModule
-
+  MatTableModule,
+  MatSnackBarModule
 } from '@angular/material';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -25,10 +26,18 @@ import { UserDashboardComponent } from './containers/user-dashboard/user-dashboa
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, SearchComponent, FooterComponent, SearchPageComponent, UserDashboardComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    SearchComponent,
+    FooterComponent,
+    SearchPageComponent,
+    UserDashboardComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     FlexLayoutModule,
@@ -40,6 +49,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatListModule,
     MatTableModule,
+    MatSnackBarModule,
     GraphQLModule,
     HttpClientModule
   ],
