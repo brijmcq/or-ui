@@ -22,6 +22,8 @@ import { SearchComponent } from './components/search/search.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchPageComponent } from './containers/search-page/search-page.component';
 import { UserDashboardComponent } from './containers/user-dashboard/user-dashboard.component';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent, NavbarComponent, SearchComponent, FooterComponent, SearchPageComponent, UserDashboardComponent],
   imports: [
@@ -37,7 +39,9 @@ import { UserDashboardComponent } from './containers/user-dashboard/user-dashboa
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatTableModule
+    MatTableModule,
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
