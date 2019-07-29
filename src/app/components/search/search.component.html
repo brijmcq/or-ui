@@ -1,10 +1,110 @@
-<div class="search-container">
-    <mat-form-field>
-      <input matInput placeholder="Input">
-    </mat-form-field>
-    <button class="search-btn" mat-raised-button color="primary">
-            <mat-icon>search</mat-icon>
-        Search</button>
-  </div>
+<mat-card>
+  <form
+    [formGroup]="searchForm"
+    (ngSubmit)="onSubmit(searchForm)"
+    #formDirective="ngForm"
+    novalidate
+  >
+    <div class="search-container">
+      <mat-form-field>
+        <input
+          formControlName="searchInput"
+          matInput
+          placeholder="Input"
+          [matAutocomplete]="autoGroup"
+        />
 
+        <mat-autocomplete #autoGroup="matAutocomplete">
+          <mat-option *ngIf="isLoading" class="is-loading"
+            ><mat-spinner diameter="50"></mat-spinner
+          ></mat-option>
+          <ng-container *ngIf="!isLoading">
+            <mat-optgroup
+              *ngIf="users && users.search.users.length"
+              label="Users"
+            >
+              <mat-option
+                *ngFor="let user of users.search.users"
+                [value]="user.firstName + ' ' + user.lastName"
+              >
+                {{ user.firstName }} {{ user.lastName }}
+              </mat-option>
+            </mat-optgroup>
 
+            <mat-optgroup
+              *ngIf="properties && properties.search.properties.length"
+              label="Properties"
+            >
+              <mat-option
+                *ngFor="let property of properties.search.properties"
+                [value]="property.city"
+              >
+                <small> {{ property.city }} </small> |
+                <small> {{ property.street }}</small> |
+                <small> {{ property.rent }} </small>
+              </mat-option>
+            </mat-optgroup>
+          </ng-container>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button class="search-btn" mat-raised-button color="primary">
+        <mat-icon>search</mat-icon>
+        Search
+      </button>
+    </div>
+  </form>
+</mat-card>
+
+<div class="container">
+  <ng-container
+    *ngIf="searchResult$ && searchResult$ | async as results; else loading"
+  >
+    <div *ngIf="results.data.search.users">
+      <h2>Users</h2>
+      <div fxLayout="row wrap" fxLayoutAlign="space-around">
+        <mat-card
+          fxFlex="100"
+          fxFlex.gt-sm="30"
+          *ngFor="let user of results.data.search.users; let i = index"
+        >
+          <img
+            mat-card-img
+            src="https://loremflickr.com/{{ 200 + i }}/300/dog"
+          />
+          <mat-card-content>
+            <p>First Name: {{ user.firstName }}</p>
+            <p>Last Name: {{ user.lastName }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="results.data.search.properties && results.data.search.properties.length">
+      <h2>Properties</h2>
+      <div fxLayout="row wrap" fxLayoutAlign="space-around">
+        <mat-card
+          fxFlex="100"
+          fxFlex.gt-sm="30"
+          *ngFor="let prop of results.data.search.properties; let i = index"
+        >
+          <img
+            mat-card-img
+            src="https://loremflickr.com/{{ 200 + i }}/300/paris"
+          />
+          <mat-card-content>
+            <p>Street {{ prop.street }}</p>
+            <p>City {{ prop.city }}</p>
+            <p>Zip {{ prop.zip }}</p>
+            <p>Rent ${{ prop.rent }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <mat-spinner
+      *ngIf="isSearchResultLoading"
+      style="margin:0 auto;"
+    ></mat-spinner>
+  </ng-template>
+</div>

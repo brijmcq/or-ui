@@ -88,10 +88,6 @@ export class PropertyService {
     rent: number,
     owner: string
   ) {
-    console.log('dito na #', street);
-    console.log('dito na #', city);
-    console.log('dito na #', state);
-    console.log('dito na #', zip);
     return this.apollo.mutate({
       mutation: this.createPropertyMutation,
       variables: {

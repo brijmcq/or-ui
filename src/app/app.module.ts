@@ -16,7 +16,8 @@ import {
   MatListModule,
   MatTableModule,
   MatSnackBarModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -54,6 +55,7 @@ import { PropertyDashboardComponent } from './containers/property-dashboard/prop
     MatTableModule,
     MatSnackBarModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
     GraphQLModule,
     HttpClientModule
   ],
