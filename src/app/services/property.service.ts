@@ -86,6 +86,11 @@ export class PropertyService {
   ) {
     return this.apollo.mutate({
       mutation: this.createPropertyMutation,
+      refetchQueries: [
+        {
+          query: this.getPropertiesQuery
+        }
+      ],
       variables: {
         street,
         city,
