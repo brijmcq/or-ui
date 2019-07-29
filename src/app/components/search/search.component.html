@@ -25,7 +25,7 @@
             >
               <mat-option
                 *ngFor="let user of users.search.users"
-                [value]="user.firstName + ' ' + user.lastName"
+                [value]="user.firstName"
               >
                 {{ user.firstName }} {{ user.lastName }}
               </mat-option>
