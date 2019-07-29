@@ -25,7 +25,7 @@ export class PropertyDashboardComponent implements OnInit, OnDestroy {
     'state',
     'zip',
     'rent',
-    'user'
+    // 'user'
   ];
   dataSource = new MatTableDataSource();
   @ViewChild('formDirective', { static: false }) private formDirective: NgForm;

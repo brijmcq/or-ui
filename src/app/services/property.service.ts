@@ -23,10 +23,6 @@ export class PropertyService {
         state
         zip
         rent
-        owner {
-          firstName
-          lastName
-        }
       }
     }
   `;
